@@ -5,6 +5,16 @@ from pathlib import Path
 
 CONFIG_PATH = Path("config/workflow.yaml")
 
+def load_config():
+    """YAML設定を読み込んで辞書として返す"""
+    with open(CONFIG_PATH, encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+def get_workflow_setting(key: str, default=None):
+    """workflow セクションから指定キーを取得"""
+    config = load_config()
+    return config.get("workflow", {}).get(key, default)
+
 def load_workflow_config() -> dict:
     """
     Load the workflow configuration from config/workflow.yaml.
