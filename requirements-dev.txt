@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+pynacl            # Ed25519 署名
+python-jose[cryptography]  # JWT
+redis>=5.0.0      # 後で本物 Queue 用
+pytest
+schemathesis
+pytest-asyncio
+httpx<0.24
