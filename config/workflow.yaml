@@ -3,6 +3,9 @@
 workflow:
   # 自動で次のフェーズに進む（true: 有効 / false: 無効）
   auto_advance: true
+  messages:
+    phase_end: "✅ フェーズ終了：評価・承認待ち状態に移行しました。"
+    phase_done: "🎉 全てのフェーズが完了しました。お疲れさまでした！"
 
   # 編集前にユーザー確認が必要なファイル一覧（セーフガード）
   confirm_on_edit:
