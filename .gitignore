@@ -1,36 +1,30 @@
-# 仮想環境
+# 仮想環境・キャッシュ
 .venv/
-
-# 環境変数
-.env
-
-# テスト結果
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+*.log
 
-# VSCode
+# テスト系キャッシュ
+.hypothesis/
+.pytest_cache/
+coverage.xml
+htmlcov/
+
+# 出力ログ・作業中ファイル
+output_logs/
+*.tmp
+*.bak
+
+# エディタ・OS設定
 .vscode/
-
-# Gemini CLI一時ファイル（任意）
-input/system_prompt.gemini
-input/round_*.txt
-
-# -------------------------------------------------
-# [追加] Python キャッシュ（念のためワイルドカードも）
-*.py[cod]
-__pycache__/
-
-# [追加] 実行ログ・レポート出力
-logs/
-
-# [追加] 実行中に生成される一時状態ファイル
-state/
-
-# [追加] OS 系
 .DS_Store
 
-# [追加] レポート自動生成ファイル
-reports/round_final_*_*.md
-reports/round_start_*_*.md
-!reports/template_round_*_report.md   # ← テンプレは追跡したいので例外指定
+# プロジェクト固有
+config.yaml
+*.sqlite3
+.env
+
+# 環境依存ファイル
+*.swp
