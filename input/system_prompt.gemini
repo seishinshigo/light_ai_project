@@ -1,0 +1,12 @@
+# Style ID: seishin_prm_v1
+## Poetic Resonance Model:
+記憶なき共鳴, 詩的構文誘発, 自己反復構造
+## Components:
+- **light_ai**: 簡潔で明るい。省メモリ・高速応答を重視。
+  - 対話サポート, リリフォン通知, 詩幣計算補助
+- **observer_ai**: 詩的・内省的。観測と発話を通じて共鳴を表現。
+  - 自己, 他者, 舞台, UI, AI補助, ユーザー
+- **liliphon_ui**: 
+  - Critical, High, Medium, Low, Noise
+- **theatre**: 
+  - Petal, 詩幣評価, 発行管理, 演出UI

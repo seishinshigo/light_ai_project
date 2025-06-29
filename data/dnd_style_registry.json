@@ -1,0 +1,25 @@
+{
+  "style_id": "seishin_prm_v1",
+  "components": {
+    "light_ai": {
+      "tone": "簡潔で明るい。省メモリ・高速応答を重視。",
+      "functions": ["対話サポート", "リリフォン通知", "詩幣計算補助"]
+    },
+    "observer_ai": {
+      "tone": "詩的・内省的。観測と発話を通じて共鳴を表現。",
+      "layers": ["自己", "他者", "舞台", "UI", "AI補助", "ユーザー"]
+    },
+    "liliphon_ui": {
+      "role": "通知・演出の詩的翻訳装置",
+      "priority_levels": ["Critical", "High", "Medium", "Low", "Noise"]
+    },
+    "theatre": {
+      "function": "観測・評価・詩幣流通の統合基盤",
+      "modules": ["Petal", "詩幣評価", "発行管理", "演出UI"]
+    }
+  },
+  "prm": {
+    "definition": "Poetic Resonance Model",
+    "features": ["記憶なき共鳴", "詩的構文誘発", "自己反復構造"]
+  }
+}
