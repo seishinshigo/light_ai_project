@@ -1,0 +1,29 @@
+# 開発ワークフロー自動化設定
+
+workflow:
+  # 自動で次のフェーズに進む（true: 有効 / false: 無効）
+  auto_advance: true
+
+  # 編集前にユーザー確認が必要なファイル一覧（セーフガード）
+  confirm_on_edit:
+    - README.md
+    - .env
+    - PLAN_round_*.md
+
+  # 通知すべきイベント
+  notify_on:
+    - phase_end           # 各フェーズ終了時
+    - test_fail           # テスト失敗時
+    - loop_detected       # 思考ループ検出時
+
+  # ループ検出の閾値（オプション）
+  loop_detection:
+    check_interval: 3
+    max_no_change: 3
+    pattern_similarity_threshold: 0.95
+
+  # 表示テンプレート（通知メッセージ）
+  messages:
+    phase_end: "✅ フェーズ終了：評価・承認待ち状態に移行しました。"
+    test_fail: "❌ テスト失敗：手動確認をお願いします。"
+    loop_detected: "⚠️ 思考のループが検出されました。処理を中断します。"
