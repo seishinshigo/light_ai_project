@@ -1,59 +1,48 @@
+import os
+from datetime import datetime
+
+
+def copy_start_template(project_name: str) -> None:
+    """
+    次のラウンド開始報告書テンプレートを reports/ にコピーする関数。
+    ファイル名は `round_start_XX_<project_name>.md` 形式。
+    """
+    os.makedirs("reports", exist_ok=True)
+
+    # 現在の reports ディレクトリ内の既存 round_start_XX_*.md を数えて連番を決定
+    existing_files = [f for f in os.listdir("reports") if f.startswith("round_start_")]
+    round_num = len(existing_files) + 1
+    filename = f"round_start_{round_num:02d}_{project_name}.md"
+    filepath = os.path.join("reports", filename)
+
+    # テンプレートの中身
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    template = f"""# 🌸 開発報告：ラウンド {round_num}
+
+- プロジェクト名: {project_name}
+- 開始時刻: {now}
+- フェーズ: 会議（初期化済）
+
+---
+
+## 📌 このラウンドでの目標
+
+（ここに目標を書く）
+
+## 🧩 想定される作業分担
+
+- ChatGPT:
+- Gemini CLI:
+- ユーザー:
+
+---
+
+## 🗒 備考
+
+（自由記述）
 """
-RoundReporter
-――――――――――――――――――――――――――――――――――――――――
-・Gemini-CLI から自動で呼ばれるのは create_final() だけ  
-・開始報告書は copy_start_template() で “雛形をコピー” するだけ  
-  └ 内容はユーザー + ChatGPT が編集してコミットする
-"""
 
-from datetime import date
-from pathlib import Path
-import shutil
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(template)
 
-from config_loader import get_project_name
-
-# ---------------------------------------------------------------------
-REPORTS_DIR = Path("reports")
-REPORTS_DIR.mkdir(exist_ok=True)
-
-TPL_FINAL = REPORTS_DIR / "template_round_final_report.md"
-TPL_START = REPORTS_DIR / "template_round_start_report.md"
-
-
-def _fill(text: str, project: str, n: int) -> str:
-    """テンプレプレースホルダを置換"""
-    return (
-        text.replace("{開発名}", project)
-            .replace("{ラウンド番号}", str(n))
-            .replace("{AIモデル名}", "GPT-4o")
-            .replace("{日付}", date.today().strftime("%Y年%m月%d日"))
-    )
-
-
-# ------------------------------------------------------------------
-# Gemini-CLI が自動で呼ぶ関数
-# ------------------------------------------------------------------
-def create_final(round_no: int, project: str | None = None) -> Path:
-    """
-    最終報告書を生成して返す。内容は自動で埋め込み。
-    例: reports/round_final_03_light_ai.md
-    """
-    project = project or get_project_name()
-    dst = REPORTS_DIR / f"round_final_{round_no:02d}_{project}.md"
-    shutil.copy(TPL_FINAL, dst)
-    dst.write_text(_fill(dst.read_text(encoding="utf-8"), project, round_no), encoding="utf-8")
-    return dst
-
-
-# ------------------------------------------------------------------
-# ユーザーが手動編集するためにテンプレをコピーするだけの関数
-# ------------------------------------------------------------------
-def copy_start_template(round_no: int, project: str | None = None) -> Path:
-    """
-    開始報告書テンプレをコピーして返す（内容自動置換なし）。
-    例: reports/round_start_04_light_ai.md
-    """
-    project = project or get_project_name()
-    dst = REPORTS_DIR / f"round_start_{round_no:02d}_{project}.md"
-    shutil.copy(TPL_START, dst)
-    return dst
+    print(f"✅ テンプレートを作成しました: {filepath}")
